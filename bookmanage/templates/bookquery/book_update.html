@@ -1,0 +1,27 @@
+{#书的详细信息的页面#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    <form method="post" action="{% url 'bookquery:save_book_update' update_book=book.name %}">
+        {% csrf_token %}
+        书名:{{ book.name }}<br>
+        修改的书名:<input type="text" name="bookname" placeholder="书名"><br>
+
+        作者:{% for i in author %}
+                <a href="{% url 'bookquery:author_info' name=i %}">{{ i }}</a>
+            {% endfor %}<br>
+
+        价格:{{ book.price }}<br>
+        修改的价格:<input type="number" name="bookprice" placeholder="价格"><br>
+
+        出版社:<a href="{% url 'bookquery:book_pub' name=book.publisher %}">{{ book.publisher }}</a><br>
+
+        出版日期:{{ book.pub_date }}<br>
+        修改的出版日期:<input type="date" name="bookdate" ><br>
+
+        评论数:{{ book.comment }}<br>
+        修改的评论数:<input type="number" name="bookcomment" placeholder="评论数"><br>
+            <input type="submit" value="确认修改">
+    </form>
+
+    <a href="{% url 'bookquery:index' %}">返回首页</a>
+{% endblock %}

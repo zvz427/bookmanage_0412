@@ -1,0 +1,15 @@
+{#用户的注册信息的界面#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    <p>注册界面</p>
+    <form method="post" action="../register_save/">
+    {% csrf_token %}
+    用户名:<input type="text" name="username" value="用户名"><br>
+    密码:<input type="password" name="password" value="密码"><br>
+    邮箱:<input type="email" name="email" value="123@163.com"><br>
+    <input type="submit" value="确认提交">
+    </form>
+{#    <script>#}
+{#    alter('successfully to register!!!')#}
+{#    </script>#}
+{% endblock %}

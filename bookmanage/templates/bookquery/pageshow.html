@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in show_page %}
+    {{ i.username }}{{ i.password }}{{ i.email }}<br>
+{% endfor %}
+
+{% if show_page.has_previous %}
+    <a href="?page={{ show_page.previous_page_number }}">前一页</a>
+{% endif %}
+
+{{ show_page.number }}/{{ show_page.paginator.num_pages }}
+
+{% if show_page.has_next %}
+    <a href="?page={{ show_page.next_page_number }}">下一页</a>
+{% endif %}
+
+{#跳转制定页面无法实现#}
+{#<form method="post" action="{% url 'bookquery:page_handler' page=page_num%}">#}
+{#  输入跳转页数:<input type="number" name="page_num">#}
+{#    <input type="submit" value="提交">#}
+{#</form>#}
+</body>
+</html>

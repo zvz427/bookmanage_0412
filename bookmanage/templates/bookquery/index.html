@@ -1,0 +1,59 @@
+{#首页信息,用户登录模块,显示所有的书籍信息#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    当前登录用户:{{ name }}
+    <a href="../logout/">退出登录</a><a href="../register/">现在注册</a>
+    <form method="POST" action="../login/">
+        {% csrf_token %}
+        用户名:<input type="text" name="username" value="用户名">
+        密码:<input type="password" name="password" value="密码">
+        <input type="submit" value="登录">
+    </form>
+    <hr>
+    <p>图书信息</p>
+    <table class="table">
+        <thead>
+            <tr class="bg-primary">
+                <th>id</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>价格</th>
+                <th>出版社</th>
+                <th>出版日期</th>
+                <th>评论数</th>
+                <th>操作</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+
+            <tr>
+                <td>{{ book.id }}</td>
+                <td><a href="{% url 'bookquery:book_info' name=book.name operate='query'%}">{{ book.name }}</a></td>
+                <td>{{ book.author.all}}</td>
+
+                <td>{{ book.price }}</td>
+                <td><a href="{% url 'bookquery:book_pub' name=book.publisher %}">{{ book.publisher }}</a></td>
+                <td>{{ book.pub_date }}</td>
+                <td>{{ book.comment }}</td>
+{#                <td><a href="{% url 'bookquery:book_update' name=book.name %}">编辑</a></td>#}
+                <td><a href="{% url 'bookquery:book_info' name=book.name operate='update'%}">编辑</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="col-lg-2  pull-right">
+        {% if books.has_previous %}
+            <a href="?page={{ books.previous_page_number }}">前一页</a>
+        {% endif %}
+
+        {{ books.number }}/{{ books.paginator.num_pages }}
+
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">下一页</a>
+        {% endif %}
+    </div>
+    <hr>
+
+{% endblock %}

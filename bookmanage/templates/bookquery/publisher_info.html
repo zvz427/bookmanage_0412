@@ -1,0 +1,8 @@
+{#显示出版社的所有信息#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    出版社名称:{{ pub.name | safe}}<br>
+    出版社地址:{{ pub.address }}<br>
+    出版社网址:{{ pub.website }}<br>
+    <a href="{% url 'bookquery:index' %}">返回首页</a>
+{% endblock %}

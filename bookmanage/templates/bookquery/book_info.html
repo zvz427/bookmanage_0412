@@ -1,0 +1,18 @@
+{#书的详细信息的页面#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    书名:{{ book.name }}<br>
+    {#    单个作者适用,多个不能显示#}
+{#    作者:<a href="{% url 'bookquery:author_info' name=author %}">{{ author }}</a><br>#}
+
+{#    优化添加多个作者,不会报错#}
+    作者:{% for i in author %}
+            <a href="{% url 'bookquery:author_info' name=i %}">{{ i }}</a>
+        {% endfor %}<br>
+
+    价格:{{ book.price }}<br>
+    出版社:<a href="{% url 'bookquery:book_pub' name=book.publisher %}">{{ book.publisher }}</a><br>
+    出版日期:{{ book.pub_date }}<br>
+    评论数:{{ book.comment }}<br>
+    <a href="{% url 'bookquery:index' %}">返回首页</a>
+{% endblock %}

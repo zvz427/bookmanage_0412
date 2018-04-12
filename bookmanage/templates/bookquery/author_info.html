@@ -1,0 +1,7 @@
+{#作者的信息#}
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    作者名:{{ author.name }}<br>
+    作者邮箱:{{ author.email }}<br>
+    <a href="{% url 'bookquery:index' %}">返回首页</a>
+{% endblock %}

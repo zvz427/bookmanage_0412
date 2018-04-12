@@ -1,0 +1,6 @@
+{% extends 'bookquery/base.html' %}
+{% block body %}
+    <p>{{ error }}</p><a href="{% url 'bookquery:register' %}">点击注册</a>
+    <a href="{% url 'bookquery:index' %}">返回首页</a>
+{% endblock %}
+
