@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': 'bookquery',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'USER': 'zxy',
+        'USER': 'root',
         'PASSWORD': 'zz',
     }
 }
@@ -155,7 +155,7 @@ SESSION_ENGINE = 'redis_sessions.session'
 # redis 的配置文件
 SESSION_REDIS_HOST = '127.0.0.1'
 SESSION_REDIS_PORT = 6379
-SESSION_REDIS_DB = 1
+SESSION_REDIS_DB = 7
 SESSION_REDIS_PASSWORD = ''
 SESSION_REDIS_PREFIX = 'session'  # 会话的开始标识
 
